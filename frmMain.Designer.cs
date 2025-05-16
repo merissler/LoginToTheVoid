@@ -1,6 +1,6 @@
 ﻿namespace LoginToTheVoid
 {
-    partial class Form1
+    partial class frmMain
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             usa = new TextBox();
             passwad = new TextBox();
             label1 = new Label();
@@ -38,6 +38,8 @@
             login = new Button();
             newusa = new Button();
             message = new Label();
+            lbUpdate = new Label();
+            llInstall = new LinkLabel();
             SuspendLayout();
             // 
             // usa
@@ -124,11 +126,33 @@
             message.TabIndex = 8;
             message.Text = "message";
             // 
-            // Form1
+            // lbUpdate
+            // 
+            lbUpdate.AutoSize = true;
+            lbUpdate.Location = new Point(169, 9);
+            lbUpdate.Name = "lbUpdate";
+            lbUpdate.Size = new Size(129, 15);
+            lbUpdate.TabIndex = 9;
+            lbUpdate.Text = "Checking for updates...";
+            // 
+            // llInstall
+            // 
+            llInstall.AutoSize = true;
+            llInstall.Location = new Point(304, 9);
+            llInstall.Name = "llInstall";
+            llInstall.Size = new Size(78, 15);
+            llInstall.TabIndex = 10;
+            llInstall.TabStop = true;
+            llInstall.Text = "Install update";
+            llInstall.Visible = false;
+            // 
+            // frmMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(llInstall);
+            Controls.Add(lbUpdate);
             Controls.Add(message);
             Controls.Add(newusa);
             Controls.Add(bad);
@@ -139,7 +163,7 @@
             Controls.Add(label1);
             Controls.Add(passwad);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "Form1";
+            Name = "frmMain";
             Text = "Password Memory Test";
             ResumeLayout(false);
             PerformLayout();
@@ -156,5 +180,7 @@
         private Button login;
         private Button newusa;
         private Label message;
+        private Label lbUpdate;
+        private LinkLabel llInstall;
     }
 }

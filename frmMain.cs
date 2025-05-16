@@ -1,22 +1,59 @@
 using Konscious.Security.Cryptography;
+using LoginToTheVoid.JsonObjects;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json;
 
 namespace LoginToTheVoid;
 
-public partial class Form1 : Form
+public partial class frmMain : Form
 {
     private readonly Color _ogGud;
     private readonly Color _ogBad;
     private readonly Connector _connector = new("192.168.90.210", "randomstuff", "postgres", "postgres");
 
-    public Form1()
+    public frmMain()
     {
         InitializeComponent();
         _ogGud = gud.ForeColor;
         _ogBad = bad.ForeColor;
         gud.ForeColor = SystemColors.ControlText;
         bad.ForeColor = SystemColors.ControlText;
+
+        CheckForUpdatesAsync();
+    }
+
+    private async void CheckForUpdatesAsync()
+    {
+        try
+        {
+            using var client = new HttpClient();
+            client.DefaultRequestHeaders.UserAgent.ParseAdd("agent");
+
+            var response = await client.GetAsync("https://api.github.com/repos/merissler/LoginToTheVoid/releases/latest");
+            response.EnsureSuccessStatusCode();
+
+            string json = await response.Content.ReadAsStringAsync();
+            var release = JsonSerializer.Deserialize<GithubRelease>(json) ?? throw new Exception("Failed to parse json: " + json);
+
+            string current = Program.Version.Trim();
+            string latest = release.TagName.Trim();
+            if (current.Equals(latest, StringComparison.OrdinalIgnoreCase))
+            {
+                lbUpdate.Text = "No new versions available";
+            }
+            else
+            {
+                lbUpdate.Text = "A new version is available";
+                llInstall.Visible = true;
+                llInstall.Location = new(lbUpdate.Right + lbUpdate.Margin.Right + llInstall.Margin.Left, lbUpdate.Top);
+            }
+        }
+        catch (Exception ex)
+        {
+            lbUpdate.Text = "Error occurred while checking for updates:" + Environment.NewLine + ex.Message;
+            lbUpdate.ForeColor = Color.Red;
+        }
     }
 
     private void login_Click(object sender, EventArgs e)
