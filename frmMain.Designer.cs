@@ -40,6 +40,8 @@
             message = new Label();
             lbUpdate = new Label();
             llInstall = new LinkLabel();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // usa
@@ -146,11 +148,22 @@
             llInstall.Text = "Install update";
             llInstall.Visible = false;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(25, 190);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(150, 117);
+            pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox1.TabIndex = 11;
+            pictureBox1.TabStop = false;
+            // 
             // frmMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(pictureBox1);
             Controls.Add(llInstall);
             Controls.Add(lbUpdate);
             Controls.Add(message);
@@ -165,6 +178,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmMain";
             Text = "Password Memory Test";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -182,5 +196,6 @@
         private Label message;
         private Label lbUpdate;
         private LinkLabel llInstall;
+        private PictureBox pictureBox1;
     }
 }
