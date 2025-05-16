@@ -17,7 +17,7 @@ DisableFinishedPage=yes
 UninstallDisplayIcon={app}\LoginToTheVoid.exe
 
 [Files]
-Source: "bin\Publish\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "bin\Publish\*.exe"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
 Name: "{group}\LoginToTheVoid"; Filename: "{app}\LoginToTheVoid.exe"
