@@ -2,7 +2,7 @@ namespace LoginToTheVoid;
 
 internal static class Program
 {
-    public static string Version { get => "v1.1"; }
+    public static string Version { get => "v1.2"; }
 
     /// <summary>
     /// The main entry point for the application.
