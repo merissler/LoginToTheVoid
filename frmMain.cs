@@ -1,5 +1,6 @@
 using Konscious.Security.Cryptography;
 using LoginToTheVoid.JsonObjects;
+using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
@@ -47,6 +48,14 @@ public partial class frmMain : Form
                 lbUpdate.Text = "A new version is available";
                 llInstall.Visible = true;
                 llInstall.Location = new(lbUpdate.Right + lbUpdate.Margin.Right + llInstall.Margin.Left, lbUpdate.Top);
+                llInstall.Click += (_, _) =>
+                {
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = release.Assets[0].BrowserDownloadUrl,
+                        UseShellExecute = true,
+                    });
+                };
             }
         }
         catch (Exception ex)
